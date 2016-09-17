@@ -3,7 +3,7 @@ html {
 }
 
 .left-bar {
-    background-color:#ccffff;
+    background-color:#77ccaa;
     display: inline-block;
     width: 25%;
     height: 100vh;
@@ -14,4 +14,14 @@ html {
 .left-text {
     color: white;
     padding-left: 10px;
+}
+
+.centerBox {
+  background-color:#CDB5CD;
+  border: 5px solid black;
+  padding: 10px 10px 10px 10px;
+}
+
+.buttons {
+  padding-top: 15px;
 }

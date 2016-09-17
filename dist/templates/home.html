@@ -1,8 +1,30 @@
 <div class="left-bar">
     <left>
-        <h2>TittleTattle</h2>
+        <img src="assets/images/tittletattle.png" alt="tittletattle">
     </left>
     <div ng-repeat="room in home.all">
-        {{ room.name }}
+      {{ room.name }}
+      <!--The modal that opens -->
+      <script type="text/ng-template" id="myModalContent.html">
+        <div class="centerBox">
+          <div ng-controller="homeCtrl as home">
+            <form>
+              <fieldset class="form-group">
+                <h2>Create a New Room</h2>
+                <h3> Room Name:</h3>
+                <input ng-model="roomName">
+                <div class="buttons">
+                  <button ng-click="addRoom()" class="btn btn-default">Submit</button>
+                </div>
+                <div class="buttons">
+                  <button ng-click="cancel()" class="btn btn-default">Exit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </script>
     </div>
+    </br>
+    <button type="button" class="btn btn-default" ng-click="open()">Create New Room</button>
 </div>
