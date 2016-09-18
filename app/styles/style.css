@@ -25,3 +25,14 @@ html {
 .buttons {
   padding-top: 15px;
 }
+
+.small-padding {
+    padding: 5px;
+}
+
+.center-page {
+    position: fixed;
+    top: 0%;
+    left: 28%;
+    color: black;
+}

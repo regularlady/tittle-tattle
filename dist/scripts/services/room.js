@@ -2,14 +2,29 @@
     function Rooms($firebaseArray) {
         var ref = firebase.database().ref().child("rooms");
         var rooms = $firebaseArray(ref);
-        // rooms.$add({name: 'newRoom'});
+        var messagesRef = firebase.database().ref().child('messages');
+        var messages = $firebaseArray(messagesRef);
 
-        var create = function (){
-            console.log("create function in Rooms.js")
-        };
-        
         return {
-            all: rooms
+            all: rooms,
+
+            create: function(newRoom) {
+                return rooms.$add(newRoom);
+            },
+
+            addMessage: function(roomId, currentMessage){
+                return messages.$add({
+                  username: "britt",
+                  content: currentMessage,
+                  sentAt: Date.now(),
+                  roomId: roomId
+              })
+            },
+            getMessages: function(roomId) {
+              var messagesById =  $firebaseArray(messagesRef.orderByChild("roomId").equalTo(roomId));
+              return messagesById;
+            }
+
         };
     }
 

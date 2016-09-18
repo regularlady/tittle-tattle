@@ -1,9 +1,11 @@
 <div class="left-bar">
-    <left>
-        <img src="assets/images/tittletattle.png" alt="tittletattle">
-    </left>
+    <img src="assets/images/tittletattle.png" alt="tittletattle">
     <div ng-repeat="room in home.all">
-      {{ room.name }}
+      <div class="small-padding" ng-click="setActive()" >
+        <div ng-model="roomName">
+          {{ room.name }}
+        </div>
+      </div>
       <!--The modal that opens -->
       <script type="text/ng-template" id="myModalContent.html">
         <div class="centerBox">
@@ -27,4 +29,15 @@
     </div>
     </br>
     <button type="button" class="btn btn-default" ng-click="open()">Create New Room</button>
+</div>
+<div class="center-page">
+  <h3>
+    Welcome to the {{ currentRoom || "TittleTattle" }} Room
+  </h3>
+  <form ng-submit="addMessage()">
+    <input ng-model="currentMessage" size="90">
+    <button>+</button>
+  </form>
+  <h3>Chat History</h3>
+  <div ng-repeat="message in messages"> {{ message.content }}</div>
 </div>

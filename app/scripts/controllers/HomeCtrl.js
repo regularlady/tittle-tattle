@@ -2,12 +2,26 @@
     function homeCtrl (Rooms, $scope, $uibModal, $log, $firebaseArray) {
 
       this.all = Rooms.all
+      var roomsArray = Rooms.all
 
       var ref = firebase.database().ref().child("rooms");
       var rooms = $firebaseArray(ref);
 
+      $scope.active = "";
+
       $scope.addRoom = function(){
-          return rooms.$add({name: $scope.roomName});
+        Rooms.create({name: $scope.roomName});
+      }
+
+      $scope.addMessage = function(){
+        Rooms.addMessage($scope.active, $scope.currentMessage);
+        $scope.currentMessage = '';
+      }
+
+      $scope.setActive = function(){
+        $scope.active = this.room.$id;
+        $scope.currentRoom = this.room.name;
+        $scope.messages = Rooms.getMessages($scope.active);
       }
 
       $scope.items = ['item1', 'item2', 'item3'];
