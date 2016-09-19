@@ -39,5 +39,11 @@
     <button>+</button>
   </form>
   <h3>Chat History</h3>
-  <div ng-repeat="message in messages"> {{ message.content }}</div>
+  <table class="table table-striped">
+		<tr ng-repeat="message in messages">
+	  		<td>{{ message.username }}</td>
+	  		<td>{{ message.sentAt | date: 'medium' }}</td>
+	  		<td>{{ message.content }}</td>
+		</tr>
+	</table>
 </div>

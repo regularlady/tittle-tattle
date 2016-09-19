@@ -1,5 +1,5 @@
 (function() {
-    function Rooms($firebaseArray) {
+    function Rooms($firebaseArray, $cookies) {
         var ref = firebase.database().ref().child("rooms");
         var rooms = $firebaseArray(ref);
         var messagesRef = firebase.database().ref().child('messages');
@@ -14,7 +14,7 @@
 
             addMessage: function(roomId, currentMessage){
                 return messages.$add({
-                  username: "britt",
+                  username: $cookies.get('tittleTattleCurrentUser'),
                   content: currentMessage,
                   sentAt: Date.now(),
                   roomId: roomId
@@ -30,5 +30,5 @@
 
     angular
         .module('tittleTattle')
-        .factory('Rooms', ['$firebaseArray', Rooms]);
+        .factory('Rooms', ['$firebaseArray', '$cookies', Rooms]);
 })();

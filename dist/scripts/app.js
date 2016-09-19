@@ -15,6 +15,6 @@
     }
 
 angular
-    .module('tittleTattle', ['ui.router', 'firebase', 'ui.bootstrap'])
+    .module('tittleTattle', ['ui.router', 'firebase', 'ui.bootstrap', 'ngCookies'])
     .config(config);
 })();
