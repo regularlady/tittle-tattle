@@ -1,5 +1,5 @@
 (function() {
-    function homeCtrl (Rooms, $scope, $uibModal, $log, $firebaseArray) {
+    function homeCtrl (Rooms, Messages, $scope, $uibModal, $log, $firebaseArray) {
 
       this.all = Rooms.all
       var roomsArray = Rooms.all
@@ -9,19 +9,21 @@
 
       $scope.active = "";
 
+      $scope.toggles = [{ state: true }, { state: false }, { state: true }];
+
       $scope.addRoom = function(){
         Rooms.create({name: $scope.roomName});
       }
 
       $scope.addMessage = function(){
-        Rooms.addMessage($scope.active, $scope.currentMessage);
+        Messages.addMessage($scope.active, $scope.currentMessage);
         $scope.currentMessage = '';
       }
 
       $scope.setActive = function(){
         $scope.active = this.room.$id;
         $scope.currentRoom = this.room.name;
-        $scope.messages = Rooms.getMessages($scope.active);
+        $scope.messages = Messages.getMessages($scope.active);
       }
 
       $scope.items = ['item1', 'item2', 'item3'];
@@ -56,5 +58,5 @@
 
     angular
         .module('tittleTattle')
-        .controller('homeCtrl',['Rooms','$scope', '$uibModal', '$log', '$firebaseArray', homeCtrl]);
+        .controller('homeCtrl',['Rooms', 'Messages', '$scope', '$uibModal', '$log', '$firebaseArray', homeCtrl]);
 })();
